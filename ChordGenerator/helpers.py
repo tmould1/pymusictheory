@@ -19,50 +19,38 @@ def MakeChordByName( rootNote, chordFormName ):
 
 # Interal functions
 def MakeScale_Interal( root, scaleForm ):
-    rootNoteIndex = 0
-    for i in range(len(westernNotes)):
-        note = westernNotes[i]
-        if( note == root ):
-            rootNodeIndex = i
-            break
-
-    scaleNotes = []
-    scaleNotes.append(westernNotes[rootNodeIndex])
-
-    numberOfNotes = len(westernNotes)
-    nextIndex = rootNodeIndex
-    for i in range(len(scaleForm)):
-        nextIndex = (rootNodeIndex + scaleForm[i]) % numberOfNotes
-        scaleNotes.append(westernNotes[nextIndex])
-    
-    return scaleNotes
-
-def GetChordFormIndex_Interal( chordName ):
-    for i in range(len(chordNames)):
-        if( chordNames[i].lower() == chordName ):
-            return i
+    rootNodeIndex = GetRootNodeIndex_Internal(root)
+    return ApplyAndReturnForm_Internal(rootNodeIndex, scaleForm)
 
 def MakeChord_Interal( root, chordForm ):
-    rootNoteIndex = 0
-    for i in range(len(westernNotes)):
-        note = westernNotes[i]
-        if( note == root ):
-            rootNodeIndex = i
-            break
+    rootNoteIndex = GetRootNodeIndex_Internal(root)
+    return ApplyAndReturnForm_Internal(rootNoteIndex, chordForm)
 
-    chordNotes = []
-    chordNotes.append(westernNotes[rootNodeIndex])
+def ApplyAndReturnForm_Internal( rootNodeIndex, form ):
+    structureNotes = []
+    structureNotes.append(westernNotes[rootNodeIndex])
 
     numberOfNotes = len(westernNotes)
     nextIndex = rootNodeIndex
-    for i in range(len(chordForm)):
-        nextIndex = (rootNodeIndex + chordForm[i]) % numberOfNotes
-        chordNotes.append(westernNotes[nextIndex])
-    return chordNotes
+    for i in range(len(form)):
+        nextIndex = (rootNodeIndex + form[i]) % numberOfNotes
+        structureNotes.append(westernNotes[nextIndex])
+    return structureNotes
+
+def GetRootNodeIndex_Internal( rootNote ):
+    for i in range(len(westernNotes)):
+        note = westernNotes[i]
+        if( note == rootNote ):
+            return i
 
 def GetScaleFormIndex_Interal( scaleName ):
     for i in range(len(scaleNames)):
         if( scaleNames[i].lower() == scaleName ):
+            return i
+
+def GetChordFormIndex_Interal( chordName ):
+    for i in range(len(chordNames)):
+        if( chordNames[i].lower() == chordName ):
             return i
 
 #Data

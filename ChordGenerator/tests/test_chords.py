@@ -71,3 +71,19 @@ class TestUM(unittest.TestCase):
         chord_notes = helpers.MakeChordByName( "C", "Aug" )
         actual_chord = [ "C", "E", "G#" ]
         self.assertListEqual(actual_chord, chord_notes)
+
+    def test_Get_Root_Node_Index_A(self):
+        rootNote = helpers.GetRootNodeIndex_Internal("A")
+        actual_index = 0
+        self.assertEqual(rootNote, actual_index)    
+    
+    def test_Get_Root_Node_Index_GSharp(self):
+        rootNote = helpers.GetRootNodeIndex_Internal("G#")
+        actual_index = 11
+        self.assertEqual(rootNote, actual_index)
+
+    def test_Apply_And_Return_Form(self):
+        testForm = helpers.ApplyAndReturnForm_Internal(3, [ 4, 7 ])
+        actualForm = [ "C", "E", "G"]
+        self.assertListEqual(testForm, actualForm)
+    
