@@ -1,0 +1,9 @@
+README.md
+setup.py
+ChordGenerator/__init__.py
+ChordGenerator/helpers.py
+ChordGenerator/main.py
+pychord.egg-info/PKG-INFO
+pychord.egg-info/SOURCES.txt
+pychord.egg-info/dependency_links.txt
+pychord.egg-info/top_level.txt
